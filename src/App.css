@@ -30,3 +30,7 @@
 .layer1 {
     background-image: url('./assets/wave.svg');
 }
+.btn-default:active, .btn-default:focus {
+    outline: none !important;
+    outline-offset: none !important;
+  }

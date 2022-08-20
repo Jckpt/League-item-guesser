@@ -8,15 +8,15 @@ function Hero() {
   const [text, setText] = useState("");
   const [chosenItem, setChosenItem] = useState("");
 
-  const getRandomItem = (arr) =>{
+  const getRandomItem = (arr) => {
     let randomItem = arr[Math.floor(Math.random() * arr.length)];
     let allNames = [...randomItem.alternativeName, randomItem.name];
-    allNames = allNames.map((element,i)=>{
+    allNames = allNames.map((element, i) => {
       return element.toLowerCase();
     });
-    randomItem = { ...randomItem, "allNames":allNames};
+    randomItem = { ...randomItem, allNames: allNames };
     return randomItem;
-  }
+  };
 
   useEffect(() => {
     const url = "/json/items.json";
@@ -34,15 +34,23 @@ function Hero() {
     };
     fetchData();
   }, []);
-  if(chosenItem.allNames?.includes(text.toLowerCase())){
-    const randomItem = getRandomItem(data);
-    setChosenItem(randomItem);
-    setText("");
-  }
+  const itemReroll = () => {
+    if (chosenItem.allNames?.includes(text.toLowerCase())) {
+      const randomItem = getRandomItem(data);
+      setChosenItem(randomItem);
+      setText("");
+    }
+  };
   return (
     <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center mh-100">
       <ItemIcon icon={chosenItem.file} />
-      <GameInput text={text} setText={setText} />
+      <GameInput
+
+        itemReroll={itemReroll}
+        allNames={chosenItem.allNames}
+        text={text}
+        setText={setText}
+      />
     </div>
   );
 }
