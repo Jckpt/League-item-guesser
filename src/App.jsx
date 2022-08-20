@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
+import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="container-fluid min-vh-100 d-flex flex-column">
+    <>
+    <div className="spacer layer1 container-fluid min-vh-100 d-flex flex-column p-0">
       <Nav/>
       <Hero/>
     </div>
+    </>
   )
 }
 

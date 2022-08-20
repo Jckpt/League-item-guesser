@@ -1,0 +1,32 @@
+.custom-shape-divider-bottom-1660925192 {
+    position: absolute;
+    top: 48px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(0deg);
+}
+
+.custom-shape-divider-bottom-1660925192 svg {
+    position: relative;
+    display: block;
+    width: calc(158% + 1.3px);
+    height: 171px;
+}
+
+.custom-shape-divider-bottom-1660925192 .shape-fill {
+    fill: #f8f9fa;
+}
+
+.spacer {
+    aspect-ratio: 960/300;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.layer1 {
+    background-image: url('./assets/wave.svg');
+}

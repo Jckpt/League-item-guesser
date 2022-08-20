@@ -1,13 +1,11 @@
 import { bottom } from '@popperjs/core';
 import React from 'react'
 import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-import placeholder from '../assets/Will_of_the_Ancients_item.webp';
-function ItemIcon() {
+function ItemIcon(props) {
   return (
-    <Card className='mb-3' style={{ width: '30rem', height: '30rem'}}>
+    <Card bg="dark" variant="dark" className='mb-3 bg-gradient' style={{ width: '24.5rem', height: '24.5rem'}}>
         <Card.Body className='d-flex justify-content-center align-items-center'>
-            <img src={placeholder} className='rounded' style={{ width: '28rem', height: '28rem'}} alt="" />
+        <img src={`items/${props.icon}/`} className='rounded img-fluid' style={{ width: '22.5rem', height: '22.5rem'}} alt="" />
         </Card.Body>
     </Card>
   )
