@@ -14,12 +14,16 @@ function buttonCooldown(delay) {
   return new Promise((resolve) => setTimeout(resolve, delay));
 }
 
-function GameInput({ setText, text, allNames, itemReroll }) {
+function GameInput({ setText, text, item, itemReroll, refetch }) {
   const [isLoading, setLoading] = useState(false);
   const [buttonVariant, setButtonVariant] = useState("primary");
+  const handleClick = () => setLoading(true);
   useEffect(() => {
     if (isLoading) {
-      if(allNames?.includes(text.toLowerCase())){
+      const allNames = item?.alternativeName.map((name)=>name.toLowerCase());
+      allNames.push(item.name.toLowerCase());
+      console.log(allNames);
+      if(allNames.includes(text.toLowerCase())){
         setButtonVariant("success");
         buttonCooldown(400).then(() => {
           setButtonVariant("primary");
@@ -36,8 +40,6 @@ function GameInput({ setText, text, allNames, itemReroll }) {
       }
     }
   }, [isLoading]);
-
-  const handleClick = () => setLoading(true);
   const onChangeHandler = (event) => {
     setText(event.target.value);
   };
