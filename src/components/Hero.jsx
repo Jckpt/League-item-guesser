@@ -1,30 +1,39 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useQuery } from '@tanstack/react-query'
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import GameInput from "./GameInput";
 import ItemIcon from "./ItemIcon";
+import Hint from './Hint';
+
+const fetchItem = async () => {
+  const URL = "https://items-api.vercel.app/api/item"; // my API
+  const response = await fetch(URL);
+  const data = await response.json();
+  console.log(data.item);
+  return data.item;
+};
 
 function Hero() {
   const [text, setText] = useState("");
-  const fetchItem = async () => {
-    const URL = "https://items-api.vercel.app/api/item"; // my API that I've hosted on vercel
-      const response = await fetch(URL);
-      return response.json();
-  };
-  const { data, status, refetch } = useQuery(['item'], fetchItem)
+  const [answerType, setAnswerType] = useState("primary");
+
+  const { data, status, refetch } = useQuery(["item"], fetchItem);
+
   const itemReroll = () => {
-      refetch();
-      setText("");
+    refetch();
+    setText("");
   };
   return (
     <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center mh-100">
-      <ItemIcon item={data?.item} status={status}/>
+      <ItemIcon item={data} status={status} />
+      <Hint item={data} status={status} answerType={answerType}/>
       <GameInput
         itemReroll={itemReroll}
-        item={data?.item}
+        item={data}
         text={text}
         setText={setText}
-        refetch={refetch}
+        answerType={answerType}
+        setAnswerType={setAnswerType}
       />
     </div>
   );

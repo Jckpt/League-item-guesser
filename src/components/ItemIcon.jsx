@@ -16,12 +16,14 @@ function ItemIcon({ item, status }) {
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         ) : (
+          <div className="d-flex justify-content-center align-items-center flex-column">
           <img
             src={icon}
             className="rounded img-fluid"
             style={{ width: "22.5rem", height: "22.5rem" }}
             alt=""
           />
+          </div>
         )}
       </Card.Body>
     </Card>
