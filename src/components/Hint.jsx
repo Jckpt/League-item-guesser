@@ -7,10 +7,10 @@ function Hint({ item, status, answerType }) {
   const [secretText, setSecretText] = useState([]);
   useEffect(() => {
     // makes for example Doran's shield ->  ["_ ", "_ ", "_ ", "_ ", "_ ", "'", "_ ",󠀀  "_ ", "_ ", "_ ", "_ ", "_ ", "_ "]
+    const skipChar = ["-", " ", "'", "."];
     setSecretText(
       item?.name.split("").map((char) => {
-        if (char === " ") return char;
-        else if (char === "'" || char === ".") return char;
+        if (skipChar.includes(char)) return char;
         else return "_";
       })
     );

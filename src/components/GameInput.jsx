@@ -53,9 +53,9 @@ function GameInput({
       h={5}
       v={0}
       r={0}
-      dur={1000}
-      int={3}
-      max={50}
+      dur={500}
+      int={4}
+      max={100}
       fixed={true}
       fixedStop={false}
       freez={false}
