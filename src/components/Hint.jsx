@@ -43,7 +43,7 @@ function Hint({ item, status, answerType }) {
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         ) : (
-          <div className="d-flex justify-content-center text-light align-items-center">
+          <div className="d-flex justify-content-center text-light align-items-center user-select-none">
             {secretText && secretText.map((char, key) => (
               char===" " ? <div className="p-2 h5" key={key}>{char}</div>: char==="_" ? <div className="p-1 h5" key={key}>{char}</div> : <div className="h5" key={key}>{char}</div>
             ))}

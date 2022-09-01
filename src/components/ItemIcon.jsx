@@ -22,6 +22,7 @@ function ItemIcon({ item, status }) {
             className="rounded img-fluid"
             style={{ width: "22.5rem", height: "22.5rem" }}
             alt=""
+            draggable="false"
           />
           </div>
         )}
