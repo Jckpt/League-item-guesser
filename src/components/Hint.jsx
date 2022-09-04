@@ -32,9 +32,7 @@ function Hint({ item, status, answerType }) {
   }, [answerType]);
   return (
     <Card
-      bg="dark"
-      variant="dark"
-      className="mb-3 bg-gradient"
+      className="mb-3 bg-light bg-gradient"
       style={{ minWidth: "24.5rem", height: "4rem" }}
     >
       <Card.Body className="d-flex justify-content-center align-items-center">
@@ -43,7 +41,7 @@ function Hint({ item, status, answerType }) {
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         ) : (
-          <div className="d-flex justify-content-center text-light align-items-center user-select-none">
+          <div className="d-flex justify-content-center align-items-center user-select-none">
             {secretText && secretText.map((char, key) => (
               char===" " ? <div className="p-2 h5" key={key}>{char}</div>: char==="_" ? <div className="p-1 h5" key={key}>{char}</div> : <div className="h5" key={key}>{char}</div>
             ))}

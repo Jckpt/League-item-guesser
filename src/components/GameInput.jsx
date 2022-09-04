@@ -62,16 +62,16 @@ function GameInput({
       active={answerType === "danger"}
     >
       <Card
-        bg="dark"
+        bg="light"
         className="bg-gradient"
-        variant="dark"
+        variant="light"
         style={{ width: "24.5rem" }}
       >
         <Card.Body className="d-flex flex-column justify-content-center">
           <Form.Control
             type="text"
             placeholder="Name of the item"
-            className="text-center text-white bg-dark border-dark"
+            className="text-center"
             value={text}
             onChange={onChangeHandler}
           />

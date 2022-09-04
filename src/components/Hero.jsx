@@ -5,16 +5,11 @@ import GameInput from "./GameInput";
 import ItemIcon from "./ItemIcon";
 import Hint from "./Hint";
 import AnswersList from "./AnswersList";
-
-const fetchItem = async () => {
-  const URL = "https://items-api.vercel.app/api/item"; // my API
-  const response = await fetch(URL);
-  const data = await response.json();
-  console.log(data.item);
-  return data.item;
-};
+import {fetchItem} from "../utility/fetchItem";
+import GameResult from "./GameResult";
 
 function Hero() {
+  const [answers, setAnswers] = useState([]);
   const [text, setText] = useState("");
   const [answerType, setAnswerType] = useState("primary");
   const { data, status, refetch } = useQuery(["item"], fetchItem);
@@ -24,7 +19,7 @@ function Hero() {
   };
   return (
     <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center mh-100">
-      <AnswersList itemReroll={itemReroll} answerType={answerType}/>
+      <AnswersList itemReroll={itemReroll} answerType={answerType} answers={answers} setAnswers={setAnswers}/>
       <ItemIcon item={data} status={status} />
       <Hint item={data} status={status} answerType={answerType} />
       <GameInput
@@ -35,6 +30,7 @@ function Hero() {
         answerType={answerType}
         setAnswerType={setAnswerType}
       />
+      <GameResult answers={answers} setAnswers={setAnswers}/>
     </div>
   );
 }

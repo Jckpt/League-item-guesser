@@ -5,9 +5,7 @@ function ItemIcon({ item, status }) {
   const icon = `https://items-api.vercel.app/items/${item?.file}`;
   return (
     <Card
-      bg="dark"
-      variant="dark"
-      className="mb-3 bg-gradient"
+      className="mb-3 bg-light bg-gradient"
       style={{ width: "24.5rem", height: "24.5rem" }}
     >
       <Card.Body className="d-flex justify-content-center align-items-center">
