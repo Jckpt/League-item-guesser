@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { ShakeHorizontal } from "reshake";
 import { FaCheck, FaTimes } from "react-icons/fa";
+import useTimeout from "../utility/useTimeout";
 import "../App.css";
 
 function buttonCooldown(delay) {
@@ -19,7 +20,11 @@ function GameInput({
   setAnswerType,
 }) {
   const [isLoading, setLoading] = useState(false);
-
+  const {reset} = useTimeout(() => {
+    setAnswerType("primary");
+    setLoading(false);
+    if(answerType==="success") itemReroll();
+  },500);
   const handleClick = () => setLoading(true);
   useEffect(() => {
     if (isLoading) {
@@ -29,19 +34,12 @@ function GameInput({
       // delays next button press by 0.4s if the answer is correct and rerolls the item
       if (allNames.includes(text.toLowerCase())) {
         setAnswerType("success");
-        buttonCooldown(400).then(() => {
-          setAnswerType("primary");
-          setLoading(false);
-          itemReroll();
-        });
+        reset();
       } 
       // delays next button press by 0.5s if the answer is incorrect
         else {
         setAnswerType("danger");
-        buttonCooldown(500).then(() => {
-          setAnswerType("primary");
-          setLoading(false);
-        });
+        reset();
       }
     }
   }, [isLoading]);

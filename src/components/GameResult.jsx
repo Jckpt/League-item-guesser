@@ -13,10 +13,10 @@ function GameResult({ answers, setAnswers }) {
     setShowResult(false);
   };
   useEffect(() => {
-    const answer = answers[answers.length - 1];
-    if (answer === "correct") {
+    const lastAnswer = answers[answers.length - 1];
+    if (lastAnswer === "correct") {
       setCountCorrect((countCorrect) => countCorrect + 1);
-    } else if (answer === "incorrect") {
+    } else if (lastAnswer === "incorrect") {
       setCountIncorrect((countIncorrect) => countIncorrect + 1);
     }
   }, [answers]);
