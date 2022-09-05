@@ -18,12 +18,17 @@ function GameInput({
   itemReroll,
   answerType,
   setAnswerType,
+  answerCounter,
+  setAnswerCounter
 }) {
   const [isLoading, setLoading] = useState(false);
   const { reset } = useTimeout(() => {
     setAnswerType("primary");
     setLoading(false);
-    if (answerType === "success") itemReroll();
+    if (answerType === "success" || answerCounter===3) {
+      setAnswerCounter(0);
+      itemReroll();
+    }
   }, 500);
   const handleClick = () => setLoading(true);
   useEffect(() => {
@@ -31,12 +36,10 @@ function GameInput({
       const allNames = item?.alternativeName.map((name) => name.toLowerCase());
       allNames.push(item.name.toLowerCase());
       console.log(allNames);
-      // delays next button press by 0.4s if the answer is correct and rerolls the item
       if (allNames.includes(text.toLowerCase())) {
         setAnswerType("success");
         reset();
       }
-      // delays next button press by 0.5s if the answer is incorrect
       else {
         setAnswerType("danger");
         reset();

@@ -6,14 +6,22 @@ import { revealCharacters } from "../utility/revealCharacters";
 import {hideText } from "../utility/hideText";
 function Hint({ item, status, answerType }) {
   const [secretText, setSecretText] = useState([]);
+  const [count,setCount] = useState(0);
   useEffect(() => {
     setSecretText(hideText(item?.name));
   }, [item]);
   useEffect(() => {
-    if (answerType === "danger") {
-        setSecretText(revealCharacters(secretText,item.name));
-    }
+    if(answerType==="danger" || answerType==="success") setCount(count=>count+1);
   }, [answerType]);
+  useEffect(()=>{
+    if(answerType==="danger" ||  answerType==="success"){
+    if(count===3 || answerType==="success") {
+      setCount(0);
+      setSecretText(item?.name.split());
+    }
+    else setSecretText(revealCharacters(secretText,item?.name));
+  }
+  },[count])
   return (
     <Card
       className="mb-3 bg-light bg-gradient"

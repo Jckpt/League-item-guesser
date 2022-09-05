@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import './App.css'
 import { useDarkreader } from 'react-darkreader';
 function App() {
-  const [isDark, { toggle }] = useDarkreader(false);
+  const [isDark, { toggle }] = useDarkreader(true);
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
