@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useEffect, useState } from "react";
+import { FaRedoAlt } from "react-icons/fa";
 function GameResult({ answers, setAnswers }) {
   const [countCorrect, setCountCorrect] = useState(0);
   const [countIncorrect, setCountIncorrect] = useState(0);
@@ -29,17 +30,24 @@ function GameResult({ answers, setAnswers }) {
     <Modal
       show={showResult}
       onHide={handleCloseResult}
-      backdrop="static"
+      backdrop="true"
       keyboard={false}
       centered
+      dialogClassName="w-100"
+      size="sm"
+      aria-labelledby="example-custom-modal-styling-title"
     >
-      <Modal.Header closeButton>
-        <Modal.Title>
-          You've lost!
+      <Modal.Header className="d-flex justify-content-center">
+        <Modal.Title id="example-custom-modal-styling-title">
+          Game Over
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        Your final score is: {countCorrect}!
+      <Modal.Body className="text-center">
+        <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+        <div className="p-2">Your final score is: {countCorrect}!</div>
+        <div className="pb-4">{countCorrect===0?<h1>😭</h1>:<h1>👍</h1>}</div>
+        <Button variant="primary" style={{"--bs-btn-font-size": "2rem", "--bs-btn-padding-y": ".5rem", "--bs-btn-padding-x": ".5rem"}} onClick={handleCloseResult}><FaRedoAlt className="d-flex justify-content-center align-items-center"/></Button>
+        </div>
       </Modal.Body>
     </Modal>
   );

@@ -21,7 +21,7 @@ function Hint({ item, status, answerType }) {
     >
       <Card.Body className="d-flex justify-content-center align-items-center">
         {status === "loading" ? (
-          <Spinner animation="border" variant="light">
+          <Spinner animation="border">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         ) : (

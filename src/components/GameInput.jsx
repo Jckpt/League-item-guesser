@@ -20,11 +20,11 @@ function GameInput({
   setAnswerType,
 }) {
   const [isLoading, setLoading] = useState(false);
-  const {reset} = useTimeout(() => {
+  const { reset } = useTimeout(() => {
     setAnswerType("primary");
     setLoading(false);
-    if(answerType==="success") itemReroll();
-  },500);
+    if (answerType === "success") itemReroll();
+  }, 500);
   const handleClick = () => setLoading(true);
   useEffect(() => {
     if (isLoading) {
@@ -35,9 +35,9 @@ function GameInput({
       if (allNames.includes(text.toLowerCase())) {
         setAnswerType("success");
         reset();
-      } 
+      }
       // delays next button press by 0.5s if the answer is incorrect
-        else {
+      else {
         setAnswerType("danger");
         reset();
       }
@@ -47,34 +47,34 @@ function GameInput({
     setText(event.target.value);
   };
   return (
-    <ShakeHorizontal
-      h={5}
-      v={0}
-      r={0}
-      dur={500}
-      int={4}
-      max={100}
-      fixed={true}
-      fixedStop={false}
-      freez={false}
-      active={answerType === "danger"}
+    <Card
+      bg="light"
+      className="bg-gradient"
+      variant="light"
+      style={{ width: "24.5rem" }}
     >
-      <Card
-        bg="light"
-        className="bg-gradient"
-        variant="light"
-        style={{ width: "24.5rem" }}
-      >
-        <Card.Body className="d-flex flex-column justify-content-center">
-          <Form.Control
-            type="text"
-            placeholder="Name of the item"
-            className="text-center"
-            value={text}
-            onChange={onChangeHandler}
-          />
+      <Card.Body className="d-flex flex-column justify-content-center">
+        <Form.Control
+          type="text"
+          placeholder="Name of the item"
+          className="text-center"
+          value={text}
+          onChange={onChangeHandler}
+        />
+        <ShakeHorizontal
+          h={5}
+          v={0}
+          r={0}
+          dur={500}
+          int={4}
+          max={100}
+          fixed={true}
+          fixedStop={false}
+          freez={false}
+          active={answerType === "danger"}
+        >
           <Button
-            className="mt-3"
+            className="mt-3 w-100"
             variant={answerType}
             disabled={isLoading}
             onClick={!isLoading ? handleClick : null}
@@ -87,9 +87,9 @@ function GameInput({
               "Enter"
             )}
           </Button>
-        </Card.Body>
-      </Card>
-    </ShakeHorizontal>
+        </ShakeHorizontal>
+      </Card.Body>
+    </Card>
   );
 }
 
