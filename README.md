@@ -1,5 +1,6 @@
 # League-item-guesser
 Guess old items name from League of Legends!
-Created by webscraping https://leagueoflegends.fandom.com/ using [my simple python script](https://github.com/Jckpt/scrape_league_items)
+Created by webscraping https://leagueoflegends.fandom.com/ using [my simple webscraper script](https://github.com/Jckpt/scrape_league_items)
 
-![website](https://user-images.githubusercontent.com/64931967/185760096-3cb25131-69e1-4e43-865e-00b5849f6326.gif)
+
+![2022-09-05 16-33-12](https://user-images.githubusercontent.com/64931967/188472756-19efc6c7-9be5-450b-911e-068be9ffaaeb.gif)
