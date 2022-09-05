@@ -27,8 +27,11 @@
     background-size: cover;
 }
 
-.layer1 {
-    background-image: url('./assets/wave.svg');
+.layerLight {
+    background-image: url('./assets/wave-light-mode.svg');
+}
+.layerDark {
+    background-image: url('./assets/wave-dark-mode.svg');
 }
 .btn-default:active, .btn-default:focus {
     outline: none !important;

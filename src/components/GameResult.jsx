@@ -33,7 +33,6 @@ function GameResult({ answers, setAnswers }) {
       backdrop="true"
       keyboard={false}
       centered
-      dialogClassName="w-100"
       size="sm"
       aria-labelledby="example-custom-modal-styling-title"
     >
