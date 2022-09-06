@@ -1,10 +1,9 @@
 import { React, useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import { ShakeHorizontal } from "reshake";
-import { FaCheck, FaTimes } from "react-icons/fa";
 import useTimeout from "../utility/useTimeout";
+import GameButton from "./GameButton";
 import "../App.css";
 
 function buttonCooldown(delay) {
@@ -19,18 +18,29 @@ function GameInput({
   answerType,
   setAnswerType,
   answerCounter,
-  setAnswerCounter
+  setAnswerCounter,
 }) {
   const [isLoading, setLoading] = useState(false);
+  const [nextBtnState, setnextBtnState] = useState(false);
   const { reset } = useTimeout(() => {
     setAnswerType("primary");
     setLoading(false);
-    if (answerType === "success" || answerCounter===3) {
+    if (answerType === "success") {
       setAnswerCounter(0);
       itemReroll();
+    } else if (answerCounter === 3) {
+      setAnswerCounter(0);
+      setAnswerType("info");
+      setnextBtnState(true);
     }
   }, 500);
+  
   const handleClick = () => setLoading(true);
+  const handleNextBtnClick = () => {
+    setnextBtnState(false);
+    setAnswerType("primary");
+    itemReroll();
+  }
   useEffect(() => {
     if (isLoading) {
       const allNames = item?.alternativeName.map((name) => name.toLowerCase());
@@ -39,8 +49,7 @@ function GameInput({
       if (allNames.includes(text.toLowerCase())) {
         setAnswerType("success");
         reset();
-      }
-      else {
+      } else {
         setAnswerType("danger");
         reset();
       }
@@ -63,6 +72,7 @@ function GameInput({
           className="text-center"
           value={text}
           onChange={onChangeHandler}
+          disabled={nextBtnState}
         />
         <ShakeHorizontal
           h={5}
@@ -76,20 +86,7 @@ function GameInput({
           freez={false}
           active={answerType === "danger"}
         >
-          <Button
-            className="mt-3 w-100"
-            variant={answerType}
-            disabled={isLoading}
-            onClick={!isLoading ? handleClick : null}
-          >
-            {answerType === "danger" ? (
-              <FaTimes />
-            ) : answerType === "success" ? (
-              <FaCheck />
-            ) : (
-              "Enter"
-            )}
-          </Button>
+          <GameButton answerType={answerType} nextBtnState={nextBtnState} isLoading={isLoading} handleNextBtnClick={handleNextBtnClick} handleClick={handleClick}/>
         </ShakeHorizontal>
       </Card.Body>
     </Card>
