@@ -16,7 +16,7 @@ function App() {
   console.log(isDark);
   return (
     <QueryClientProvider client={queryClient}>
-    <div className={"spacer container-fluid min-vh-100 d-flex flex-column p-0 " + (isDark?"layerDark":"layerLight")}>
+    <div className={"spacer container-fluid vh-100 d-flex flex-column p-0 " + (isDark?"layerDark":"layerLight")}>
       <Nav isDark={isDark} toggle={toggle}/>
       <Hero/>
     </div>
