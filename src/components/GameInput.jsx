@@ -34,7 +34,7 @@ function GameInput({
       setnextBtnState(true);
     }
   }, 500);
-  
+
   const handleClick = () => setLoading(true);
   const handleNextBtnClick = () => {
     setnextBtnState(false);
@@ -55,8 +55,8 @@ function GameInput({
       }
     }
   }, [isLoading]);
-  const onChangeHandler = (event) => {
-    setText(event.target.value);
+  const onChangeHandler = (e) => {
+    setText(e.target.value);
   };
   return (
     <Card
@@ -76,8 +76,6 @@ function GameInput({
         />
         <ShakeHorizontal
           h={5}
-          v={0}
-          r={0}
           dur={500}
           int={4}
           max={100}
